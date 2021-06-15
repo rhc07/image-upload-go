@@ -40,6 +40,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 
 	// 4. return whether or not this has been successful
 	fmt.Fprintf(w, "Successfully uploaded file\n")
+	http.HandleFunc("/show", showFile)
 }
 
 func showFile(w http.ResponseWriter, r *http.Request) {
@@ -49,7 +50,6 @@ func showFile(w http.ResponseWriter, r *http.Request) {
 
 func setUpRoutes() {
 	http.HandleFunc("/upload", uploadFile)
-	http.HandleFunc("/show", showFile)
 	http.ListenAndServe(":9090", nil)
 }
 
