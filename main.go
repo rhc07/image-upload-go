@@ -17,7 +17,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("Error retrieving data")
 		fmt.Println(err)
-		return //what is this returning?
+		return
 	}
 	defer file.Close()
 	fmt.Printf("Uploaded file: %v\n", handler.Filename)
@@ -42,14 +42,14 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Successfully uploaded file\n")
 }
 
-func showFile(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Here is your piccy you uploaded\n")
+// func showFile(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Fprint(w, "Here is your piccy you uploaded\n")
 
-}
+// }
 
 func setUpRoutes() {
 	http.HandleFunc("/upload", uploadFile)
-	http.HandleFunc("/show", showFile)
+	// http.HandleFunc("/show", showFile)
 	http.ListenAndServe(":9090", nil)
 }
 
